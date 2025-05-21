@@ -5,9 +5,10 @@
   <h4 class="mb-4 fw-bold">Preferensi</h4>
 
   <ul class="nav nav-tabs mb-4" id="courseTabs">
-    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">Keahlian</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Minat</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="2">Lokasi</a></li>
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">Gaji</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Prospek Kerja</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="2">Minat</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="3">Keterampilan</a></li>
   </ul>
 
   <!-- Konten Per Tab -->
@@ -20,13 +21,21 @@
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Nama Keahlian</label>
-            <input type="text" class="form-control" value="UI Designer">
+            <label class="form-label fw-semibold">Gaji</label>
+            <div class="p-3 bg-light border rounded mb-2">
+              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
+              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
+              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+            </div>
+            <select class="form-select" name="minat">
+              <option value="1">Sangat Tidak Berminat</option>
+              <option value="3">Tidak Berminat</option>
+              <option value="5">Netral</option>
+              <option value="7">Berminat</option>
+              <option value="9">Sangat Berminat</option>
+            </select>
           </div>
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Deskripsi</label>
-            <textarea class="form-control" rows="5">Desain antarmuka yang user-friendly dan modern untuk aplikasi digital.</textarea>
-          </div>
+
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
             <button class="btn btn-primary">Lanjut</button>
@@ -43,12 +52,19 @@
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Nama Keahlian</label>
-            <input type="text" class="form-control" value="UI Designer">
-          </div>
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Deskripsi</label>
-            <textarea class="form-control" rows="5">Desain antarmuka yang user-friendly dan modern untuk aplikasi digital.</textarea>
+            <label class="form-label fw-semibold">Prospek Kerja</label>
+            <div class="p-3 bg-light border rounded mb-2">
+              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
+              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
+              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+            </div>
+            <select class="form-select" name="minat">
+              <option value="1">Sangat Tidak Berminat</option>
+              <option value="3">Tidak Berminat</option>
+              <option value="5">Netral</option>
+              <option value="7">Berminat</option>
+              <option value="9">Sangat Berminat</option>
+            </select>
           </div>
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
@@ -66,13 +82,52 @@
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Nama Keahlian</label>
-            <input type="text" class="form-control" value="UI Designer">
+            <label class="form-label fw-semibold">Minat</label>
+            <div class="p-3 bg-light border rounded mb-2">
+              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
+              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
+              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+            </div>
+            <select class="form-select" name="minat">
+              <option value="1">Sangat Tidak Berminat</option>
+              <option value="3">Tidak Berminat</option>
+              <option value="5">Netral</option>
+              <option value="7">Berminat</option>
+              <option value="9">Sangat Berminat</option>
+            </select>
           </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary">Simpan</button>
+            <button class="btn btn-primary">Lanjut</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Keterampilan -->
+    <div class="tab-pane d-none" data-content="2">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <img src="<?= base_url('images/career.jpg') ?>" class="img-fluid rounded" alt="Course Cover">
+        </div>
+        <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Deskripsi</label>
-            <textarea class="form-control" rows="5">Desain antarmuka yang user-friendly dan modern untuk aplikasi digital.</textarea>
+            <label class="form-label fw-semibold">Keterampilan</label>
+            <div class="p-3 bg-light border rounded mb-2">
+              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
+              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
+              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+            </div>
+            <select class="form-select" name="minat">
+              <option value="1">Sangat Tidak Berminat</option>
+              <option value="3">Tidak Berminat</option>
+              <option value="5">Netral</option>
+              <option value="7">Berminat</option>
+              <option value="9">Sangat Berminat</option>
+            </select>
           </div>
+
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
             <button class="btn btn-primary">Lanjut</button>

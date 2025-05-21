@@ -13,13 +13,13 @@
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
             Preferensi
           </a>
-          <a class="nav-link <?= ($activePage == 'preferensi' ? 'active' : '') ?>" href="<?= base_url('preferensi') ?>">
-            <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
-            Score
-          </a>
           <a class="nav-link <?= ($activePage == 'rekomendasi' ? 'active' : '') ?>" href="<?= base_url('rekomendasi') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
             Rekomendasi Saya
+          </a>
+          <a class="nav-link <?= ($activePage == '' ? 'active' : '') ?>" href="<?= base_url('') ?>">
+            <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
+            Riwayat
           </a>
 
           <!-- Menu Untuk Admin -->
@@ -35,15 +35,15 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
                 Manage Kriteria
               </a>
-              <a class="nav-link <?= ($activePage == 'criteria' ? 'active' : '') ?>" href="<?= base_url('criteria') ?>">
+              <a class="nav-link <?= ($activePage == '' ? 'active' : '') ?>" href="<?= base_url('') ?>">
                 <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
-                Manage Careers
+                Manage Alternative
               </a>
-              <a class="nav-link <?= ($activePage == 'criteria' ? 'active' : '') ?>" href="<?= base_url('criteria') ?>">
+              <a class="nav-link <?= ($activePage == '' ? 'active' : '') ?>" href="<?= base_url('') ?>">
                 <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
                 AHP Weights Input
               </a>
-              <a class="nav-link <?= ($activePage == 'criteria' ? 'active' : '') ?>" href="<?= base_url('criteria') ?>">
+              <a class="nav-link <?= ($activePage == '' ? 'active' : '') ?>" href="<?= base_url('') ?>">
                 <div class="sb-nav-link-icon"><i class="fas fa-list-check"></i></div>
                 User Management
               </a>
