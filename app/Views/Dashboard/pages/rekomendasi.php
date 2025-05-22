@@ -91,6 +91,17 @@
         </div>
     </div>
 
+    <div class="text-center mt-3">
+        <form action="<?= base_url('riwayat/simpan') ?>" method="post">
+            <input type="hidden" name="karir" value="UI/UX Designer">
+            <input type="hidden" name="skor" value="85">
+            <button type="submit" class="btn btn-primary">
+                💾 Simpan ke Riwayat
+            </button>
+        </form>
+    </div>
+
+
 </div>
 
 <?= $this->endSection() ?>

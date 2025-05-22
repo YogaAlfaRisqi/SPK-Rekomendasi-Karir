@@ -20,9 +20,9 @@
   <!-- Navbar-->
   <?= $this->include('Dashboard/components/admin_navbar') ?>
   
-  <div id="layoutSidenav" style="display:flex; min-height:100vh;">
+  <div id="layoutSidenav" style="display:flex; min-height:100vh ">
     
-    <div id="layoutSidenav_nav" style="width: 250px;">
+    <div id="layoutSidenav_nav" style="width: 250px border-1 shadow-sm">
       <?= $this->include('Dashboard/components/admin_sidebar') ?>
     </div>
     

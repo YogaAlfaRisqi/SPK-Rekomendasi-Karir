@@ -17,7 +17,7 @@
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
             Rekomendasi Saya
           </a>
-          <a class="nav-link <?= ($activePage == '' ? 'active' : '') ?>" href="<?= base_url('') ?>">
+          <a class="nav-link <?= ($activePage == 'riwayat' ? 'active' : '') ?>" href="<?= base_url('riwayat') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
             Riwayat
           </a>

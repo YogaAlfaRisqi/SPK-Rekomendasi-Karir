@@ -1,14 +1,17 @@
+<?php
+$uri = service('uri');
+$segment1 = $uri->getSegment(1); // bagian pertama dari URL
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container-fluid px-4">
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center fw-semibold text-primary fs-5" href="index.html" style="gap: 0.5rem;">
+    <a class="navbar-brand d-flex align-items-center fw-semibold text-primary fs-5" href="<?= base_url() ?>" style="gap: 0.5rem;">
       <i class="fa-solid fa-briefcase fa-lg"></i>
       <div class="d-flex flex-column lh-sm">
         <span class="fw-bold">Rekomendasi Karir</span>
         <small class="text-muted" style="font-size: 0.75rem;">Temukan jalur suksesmu</small>
       </div>
     </a>
-
 
     <!-- Sidebar Toggle Button -->
     <button
@@ -29,6 +32,7 @@
 
     <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarResponsive">
+
       <!-- Search Form -->
       <form class="d-flex me-auto my-2 my-lg-0 ms-3" role="search">
         <div class="input-group">
@@ -44,30 +48,78 @@
         </div>
       </form>
 
-
-
-      <!-- User Dropdown -->
-      <ul class="navbar-nav ms-auto">
+      <!-- User Account Menu (Layar Besar) -->
+      <ul class="navbar-nav ms-auto d-none d-lg-flex align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="<?=base_url("images/userAvatar.jpg")?>" alt="User Avatar" class="rounded-circle me-2" width="32" height="32">
-            <span class="d-none d-lg-inline text-dark fw-medium">Akun</span>
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img
+              src="<?= base_url('images/userAvatar.jpg') ?>"
+              alt="User Avatar"
+              class="rounded-circle me-2"
+              width="36"
+              height="36" />
+            <span class="text-dark fw-medium">Akun</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">Pengaturan</a></li>
-            <li><a class="dropdown-item" href="#!">Riwayat Aktivitas</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('akun/pengaturan') ?>">Pengaturan</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('akun/riwayat') ?>">Riwayat Aktivitas</a></li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item text-danger" href="#!">Keluar</a></li>
+            <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Keluar</a></li>
           </ul>
         </li>
       </ul>
 
     </div>
   </div>
+
+  <!-- Bottom Navbar (Mobile Only) -->
+  <nav class="d-md-none fixed-bottom bg-white border-top shadow-sm">
+    <div class="d-flex justify-content-around py-2">
+
+      <!-- Dashboard -->
+      <a href="<?= base_url('/') ?>"
+        class="text-center text-decoration-none <?= $segment1 == '' ? 'text-primary fw-bold' : 'text-dark' ?>">
+        <i class="fas fa-home fa-lg <?= $segment1 == '' ? 'text-primary' : '' ?>"></i>
+        <div class="small">Dashboard</div>
+      </a>
+
+      <!-- Preferensi -->
+      <a href="<?= base_url('preferensi') ?>"
+        class="text-center text-decoration-none <?= $segment1 == 'preferensi' ? 'text-primary fw-bold' : 'text-dark' ?>">
+        <i class="fas fa-sliders-h fa-lg <?= $segment1 == 'preferensi' ? 'text-primary' : '' ?>"></i>
+        <div class="small">Preferensi</div>
+      </a>
+
+      <!-- Akun Dropdown (Mobile) -->
+      <div class=" text-center">
+        <a class="text-decoration-none dropdown-toggle <?= in_array($segment1, ['akun', 'pengaturan', 'riwayat']) ? 'text-primary fw-bold' : 'text-dark' ?>"
+          href="#" role="button" data-bs-toggle="dropdown">
+          <img
+            src="<?= base_url('images/userAvatar.jpg') ?>"
+            alt="User Avatar"
+            class="rounded-circle mb-1"
+            width="28"
+            height="28" />
+          <div class="small">Akun</div>
+        </a>
+
+      </div>
+
+    </div>
+  </nav>
 </nav>
-<!-- Inline Script for hover effect -->
+
+
+
+<!-- Inline Script for hamburger hover effect -->
 <script>
   document.querySelectorAll('.navbar-toggler').forEach(button => {
     button.addEventListener('mouseover', () => {
