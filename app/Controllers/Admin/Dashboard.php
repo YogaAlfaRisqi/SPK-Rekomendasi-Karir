@@ -15,7 +15,7 @@ class Dashboard extends BaseController
                 'icon' => 'fas fa-brain',
                 'color' => 'text-primary',
                 'title' => 'Analisis Cerdas',
-                'text'  => 'Sistem ini menggunakan metode MOORA untuk membantu proses pengambilan keputusan karir yang tepat.',
+                'text'  => 'Sistem ini menggunakan metode AHP & SAW untuk membantu proses pengambilan keputusan karir yang tepat.',
             ],
             [
                 'icon' => 'fas fa-user-check',

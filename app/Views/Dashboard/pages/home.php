@@ -18,7 +18,7 @@
 
             <a href="<?= base_url('/admin/criteria') ?>" class="btn btn-primary btn-sm">Lihat Rekomendasi</a>
           </div>
-          <img src="<?= base_url('images/.jpg') ?>" alt="Hero Illustration" class="img-fluid" style="max-height: 150px;">
+          <img src="<?= base_url("images/career.png") ?>" alt="Hero Illustration" class="img-fluid" style="max-height: 150px;">
         </div>
       </div>
     </div>

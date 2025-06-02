@@ -5,37 +5,34 @@
   <h4 class="mb-4 fw-bold">Preferensi</h4>
 
   <ul class="nav nav-tabs mb-4" id="courseTabs">
-    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">Gaji</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Prospek Kerja</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="2">Minat</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="3">Keterampilan</a></li>
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">IPK</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Proyek Terkait</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="2">Pengalaman Kerja</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="3">Sertifikasi</a></li>
   </ul>
 
-  <!-- Konten Per Tab -->
   <div class="tab-content">
-    <!-- Tab Keahlian -->
-    <div class="tab-pane active " data-content="0">
+    <!-- Tab IPK -->
+    <div class="tab-pane active" data-content="0">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="<?= base_url('images/career.jpg') ?>" class="img-fluid rounded" alt="Course Cover">
+          <img src="<?=base_url("images/ipk.jpg")?>" class="img-fluid rounded" alt="IPK">
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Gaji</label>
+            <label class="form-label fw-semibold">IPK</label>
             <div class="p-3 bg-light border rounded mb-2">
-              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
-              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
-              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+              Seberapa besar Anda menilai pentingnya <strong>Indeks Prestasi Kumulatif (IPK)</strong> dalam karier Anda?
+              Apakah Anda merasa IPK merupakan indikator utama dalam menggambarkan potensi akademik Anda untuk pekerjaan yang Anda minati?
             </div>
-            <select class="form-select" name="minat">
-              <option value="1">Sangat Tidak Berminat</option>
-              <option value="3">Tidak Berminat</option>
+            <select class="form-select" name="ipk">
+              <option value="1">Sangat Tidak Penting</option>
+              <option value="3">Tidak Penting</option>
               <option value="5">Netral</option>
-              <option value="7">Berminat</option>
-              <option value="9">Sangat Berminat</option>
+              <option value="7">Penting</option>
+              <option value="9">Sangat Penting</option>
             </select>
           </div>
-
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
             <button class="btn btn-primary">Lanjut</button>
@@ -44,26 +41,25 @@
       </div>
     </div>
 
-    <!-- Tab Minat -->
+    <!-- Tab Proyek Terkait -->
     <div class="tab-pane d-none" data-content="1">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="<?= base_url('images/career.jpg') ?>" class="img-fluid rounded" alt="Course Cover">
+          <img src="<?=base_url("images/Projects.jpg")?>" class="img-fluid rounded" alt="Project">
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Prospek Kerja</label>
+            <label class="form-label fw-semibold">Proyek Terkait</label>
             <div class="p-3 bg-light border rounded mb-2">
-              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
-              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
-              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+              Sejauh mana Anda merasa pengalaman dalam <strong>proyek terkait bidang pekerjaan</strong> memengaruhi kesiapan karier Anda?
+              Apakah Anda percaya bahwa portofolio proyek yang relevan lebih mencerminkan kemampuan daripada nilai akademik?
             </div>
-            <select class="form-select" name="minat">
-              <option value="1">Sangat Tidak Berminat</option>
-              <option value="3">Tidak Berminat</option>
+            <select class="form-select" name="proyek">
+              <option value="1">Sangat Tidak Relevan</option>
+              <option value="3">Kurang Relevan</option>
               <option value="5">Netral</option>
-              <option value="7">Berminat</option>
-              <option value="9">Sangat Berminat</option>
+              <option value="7">Relevan</option>
+              <option value="9">Sangat Relevan</option>
             </select>
           </div>
           <div class="d-flex gap-2">
@@ -74,29 +70,27 @@
       </div>
     </div>
 
-    <!-- Tab Lokasi -->
+    <!-- Tab Pengalaman Kerja -->
     <div class="tab-pane d-none" data-content="2">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="<?= base_url('images/career.jpg') ?>" class="img-fluid rounded" alt="Course Cover">
+          <img src="<?=base_url("images/work.jpg")?>" class="img-fluid rounded" alt="Work Experience">
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Minat</label>
+            <label class="form-label fw-semibold">Pengalaman Kerja</label>
             <div class="p-3 bg-light border rounded mb-2">
-              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
-              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
-              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+              Seberapa besar pengaruh <strong>pengalaman kerja</strong> terhadap kesiapan Anda menghadapi dunia profesional?
+              Apakah Anda menilai bahwa pengalaman praktis di industri memberikan keunggulan lebih dibandingkan sekadar teori?
             </div>
-            <select class="form-select" name="minat">
-              <option value="1">Sangat Tidak Berminat</option>
-              <option value="3">Tidak Berminat</option>
+            <select class="form-select" name="pengalaman">
+              <option value="1">Sangat Tidak Berpengaruh</option>
+              <option value="3">Kurang Berpengaruh</option>
               <option value="5">Netral</option>
-              <option value="7">Berminat</option>
-              <option value="9">Sangat Berminat</option>
+              <option value="7">Berpengaruh</option>
+              <option value="9">Sangat Berpengaruh</option>
             </select>
           </div>
-
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
             <button class="btn btn-primary">Lanjut</button>
@@ -105,29 +99,27 @@
       </div>
     </div>
 
-    <!-- Tab Keterampilan -->
-    <div class="tab-pane d-none" data-content="2">
+    <!-- Tab Sertifikasi -->
+    <div class="tab-pane d-none" data-content="3">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="<?= base_url('images/career.jpg') ?>" class="img-fluid rounded" alt="Course Cover">
+          <img src="<?=base_url("images/Sertifikasi.jpg")?>" class="img-fluid rounded" alt="Certificate">
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">Keterampilan</label>
+            <label class="form-label fw-semibold">Sertifikasi</label>
             <div class="p-3 bg-light border rounded mb-2">
-              Anda sedang menilai tingkat minat Anda terhadap <strong>perancangan antarmuka pengguna (UI)</strong>.
-              Bidang ini mencakup pembuatan tampilan aplikasi yang <em>user-friendly</em>, modern, dan menarik secara visual.
-              Apakah Anda merasa tertarik bekerja dalam proses kreatif untuk mendesain pengalaman digital yang intuitif bagi pengguna?
+              Seberapa penting Anda menilai <strong>sertifikasi</strong> dalam menunjang kompetensi profesional?
+              Apakah sertifikasi menjadi salah satu pertimbangan utama Anda dalam menambah nilai jual di dunia kerja?
             </div>
-            <select class="form-select" name="minat">
-              <option value="1">Sangat Tidak Berminat</option>
-              <option value="3">Tidak Berminat</option>
+            <select class="form-select" name="sertifikasi">
+              <option value="1">Sangat Tidak Penting</option>
+              <option value="3">Tidak Penting</option>
               <option value="5">Netral</option>
-              <option value="7">Berminat</option>
-              <option value="9">Sangat Berminat</option>
+              <option value="7">Penting</option>
+              <option value="9">Sangat Penting</option>
             </select>
           </div>
-
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary">Simpan</button>
             <button class="btn btn-primary">Lanjut</button>
@@ -136,12 +128,8 @@
       </div>
     </div>
   </div>
-
 </div>
 
-
-
-<!-- Style -->
 <style>
   body {
     background-color: #f5fbff;
@@ -178,7 +166,6 @@
   }
 </style>
 
-<!-- Script -->
 <script>
   const tabs = document.querySelectorAll('#courseTabs .nav-link');
   const tabContents = document.querySelectorAll('.tab-pane');
@@ -198,16 +185,15 @@
     }
   }
 
-
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', function(e) {
+    tab.addEventListener('click', function (e) {
       e.preventDefault();
       activateTab(index);
     });
   });
 
   nextButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       const activeIndex = Array.from(tabs).findIndex(tab => tab.classList.contains('active'));
       if (activeIndex < tabs.length - 1) {
         activateTab(activeIndex + 1);

@@ -1,7 +1,5 @@
-<?php
-$uri = service('uri');
-$segment1 = $uri->getSegment(1); // bagian pertama dari URL
-?>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container-fluid px-4">
     <!-- Brand -->
@@ -79,58 +77,4 @@ $segment1 = $uri->getSegment(1); // bagian pertama dari URL
 
     </div>
   </div>
-
-  <!-- Bottom Navbar (Mobile Only) -->
-  <nav class="d-md-none fixed-bottom bg-white border-top shadow-sm">
-    <div class="d-flex justify-content-around py-2">
-
-      <!-- Dashboard -->
-      <a href="<?= base_url('/') ?>"
-        class="text-center text-decoration-none <?= $segment1 == '' ? 'text-primary fw-bold' : 'text-dark' ?>">
-        <i class="fas fa-home fa-lg <?= $segment1 == '' ? 'text-primary' : '' ?>"></i>
-        <div class="small">Dashboard</div>
-      </a>
-
-      <!-- Preferensi -->
-      <a href="<?= base_url('preferensi') ?>"
-        class="text-center text-decoration-none <?= $segment1 == 'preferensi' ? 'text-primary fw-bold' : 'text-dark' ?>">
-        <i class="fas fa-sliders-h fa-lg <?= $segment1 == 'preferensi' ? 'text-primary' : '' ?>"></i>
-        <div class="small">Preferensi</div>
-      </a>
-
-      <!-- Akun Dropdown (Mobile) -->
-      <div class=" text-center">
-        <a class="text-decoration-none dropdown-toggle <?= in_array($segment1, ['akun', 'pengaturan', 'riwayat']) ? 'text-primary fw-bold' : 'text-dark' ?>"
-          href="#" role="button" data-bs-toggle="dropdown">
-          <img
-            src="<?= base_url('images/userAvatar.jpg') ?>"
-            alt="User Avatar"
-            class="rounded-circle mb-1"
-            width="28"
-            height="28" />
-          <div class="small">Akun</div>
-        </a>
-
-      </div>
-
-    </div>
-  </nav>
 </nav>
-
-
-
-<!-- Inline Script for hamburger hover effect -->
-<script>
-  document.querySelectorAll('.navbar-toggler').forEach(button => {
-    button.addEventListener('mouseover', () => {
-      button.querySelector('.line1').style.transform = 'rotate(45deg) translate(3px, 3px)';
-      button.querySelector('.line2').style.opacity = '0';
-      button.querySelector('.line3').style.transform = 'rotate(-45deg) translate(3px, -3px)';
-    });
-    button.addEventListener('mouseout', () => {
-      button.querySelector('.line1').style.transform = 'none';
-      button.querySelector('.line2').style.opacity = '1';
-      button.querySelector('.line3').style.transform = 'none';
-    });
-  });
-</script>
