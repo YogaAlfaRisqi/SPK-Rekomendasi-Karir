@@ -34,6 +34,11 @@
             Manage Kriteria
           </a>
 
+          <a class="nav-link <?= ($activePage == 'karir' ? 'active' : '') ?>" href="<?= base_url('karir') ?>">
+            <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
+            Manage Karir
+          </a>
+
           <a class="nav-link <?= ($activePage == 'alternative' ? 'active' : '') ?>" href="<?= base_url('alternative') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
             Manage Alternatif
