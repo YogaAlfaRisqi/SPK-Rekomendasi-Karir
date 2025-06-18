@@ -39,6 +39,11 @@
             Manage Karir
           </a>
 
+          <a class="nav-link <?= ($activePage == 'pembobotan' ? 'active' : '') ?>" href="<?= base_url('pembobotan') ?>">
+            <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
+            Manage Pembobotan Kriteria
+          </a>
+
           <a class="nav-link <?= ($activePage == 'alternative' ? 'active' : '') ?>" href="<?= base_url('alternative') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
             Manage Alternatif
