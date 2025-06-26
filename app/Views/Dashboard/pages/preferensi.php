@@ -5,128 +5,185 @@
   <h4 class="mb-4 fw-bold">Preferensi</h4>
 
   <ul class="nav nav-tabs mb-4" id="courseTabs">
-    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">IPK</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Proyek Terkait</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="2">Pengalaman Kerja</a></li>
-    <li class="nav-item"><a class="nav-link" href="#" data-tab="3">Sertifikasi</a></li>
+    <li class="nav-item"><a class="nav-link active" href="#" data-tab="0">Nilai</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-tab="1">Cek Nilai</a></li>
   </ul>
 
   <div class="tab-content">
-    <!-- Tab IPK -->
+    <!-- Tab Nilai -->
     <div class="tab-pane active" data-content="0">
+      <div class="row g-4 flex-column">
+
+
+        <?php
+        $pertanyaan = [
+          [
+            "Algoritma.jpg",
+            "Algoritma Pemrograman",
+            "Masukkan nilai akhir Anda untuk <strong>Algoritma Pemrograman</strong>."
+          ],
+          [
+            "basisdata.jpg",
+            "Basis Data",
+            "Masukkan nilai akhir Anda untuk <strong>Basis Data</strong>."
+          ],
+          [
+            "web.jpg",
+            "Pemrograman Web",
+            "Masukkan nilai akhir Anda untuk <strong>Pemrograman Web</strong>."
+          ],
+          [
+            "ksi.jpg",
+            "Konsep Sistem Informasi",
+            "Masukkan nilai akhir Anda untuk <strong>Konsep Sistem Informasi</strong>."
+          ],
+          [
+            "ansi.jpg",
+            "Analisis & Perancangan Sistem",
+            "Masukkan nilai akhir Anda untuk <strong>Analisis dan Perancangan Sistem</strong>."
+          ],
+          [
+            "rpl.jpg",
+            "Rekayasa Perangkat Lunak",
+            "Masukkan nilai akhir Anda untuk <strong>Rekayasa Perangkat Lunak</strong>."
+          ],
+          [
+            "jarkom.jpg",
+            "Jaringan Komputer",
+            "Masukkan nilai akhir Anda untuk <strong>Jaringan Komputer</strong>."
+          ],
+          [
+            "strukdata.jpg",
+            "Struktur Data",
+            "Masukkan nilai akhir Anda untuk <strong>Struktur Data</strong>."
+          ],
+          [
+            "manajjarkom.jpg",
+            "Manajemen Jaringan",
+            "Masukkan nilai akhir Anda untuk <strong>Manajemen Jaringan</strong>."
+          ],
+          [
+            "dwdm.jpg",
+            "Data Warehouse & Data Mining",
+            "Masukkan nilai akhir Anda untuk <strong>Data Warehouse dan Data Mining</strong>."
+          ],
+          [
+            "netadmin.jpg",
+            "Network Administrator",
+            "Masukkan nilai akhir Anda untuk <strong>Network Administrator</strong>."
+          ],
+          [
+            "manajproti.jpg",
+            "Manajemen Proyek TI",
+            "Masukkan nilai akhir Anda untuk <strong>Manajemen Proyek TI</strong>."
+          ]
+        ];
+
+        $nilai_opsi = ["A", "A-", "B+", "B", "C+", "C", "D", "E"];
+
+        foreach ($pertanyaan as $index => $item):
+        ?>
+          <div class="row g-4 mb-4">
+            <div class="col-md-4" style="height: 200px; overflow: hidden;">
+              <img
+                src="<?= base_url("images/" . $item[0]) ?>"
+                class="img-fluid rounded"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                alt="<?= htmlspecialchars($item[1]) ?>">
+            </div>
+
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label class="form-label fw-semibold"><?= $item[1] ?></label>
+                <div class="p-3 bg-light border rounded mb-2">
+                  <?= $item[2] ?>
+                </div>
+                <select class="form-select" name="nilai[<?= $item[1] ?>]">
+                  <option disabled selected>Pilih nilai</option>
+                  <?php foreach ($nilai_opsi as $nilai): ?>
+                    <option value="<?= $nilai ?>"><?= $nilai ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-secondary">Simpan</button>
+          <button class="btn btn-primary">Lanjut</button>
+        </div>
+      </div>
+    </div>
+    <!-- Tab Cek Nilai -->
+    <div class="tab-pane active" data-content="1">
       <div class="row g-4">
         <div class="col-md-4">
-          <img src="<?=base_url("images/ipk.jpg")?>" class="img-fluid rounded" alt="IPK">
+          <img src="<?= base_url("images/Projects.jpg") ?>" class="img-fluid rounded" alt="Project">
         </div>
         <div class="col-md-8">
           <div class="mb-3">
-            <label class="form-label fw-semibold">IPK</label>
-            <div class="p-3 bg-light border rounded mb-2">
-              Seberapa besar Anda menilai pentingnya <strong>Indeks Prestasi Kumulatif (IPK)</strong> dalam karier Anda?
-              Apakah Anda merasa IPK merupakan indikator utama dalam menggambarkan potensi akademik Anda untuk pekerjaan yang Anda minati?
+            <label class="form-label fw-semibold">Rekap Nilai Anda</label>
+            <div class="p-3 bg-light border rounded mb-3">
+              <p>Berikut adalah rekap nilai Anda berdasarkan input sebelumnya. Gunakan informasi ini untuk menilai kesiapan Anda dalam berkarier.</p>
+
+              <?php
+              // Simulasi data (replace dengan data dari database / session / post)
+              $daftarNilai = $nilai ?? [];
+
+              // Daftar semua mata kuliah
+              $semuaMatkul = [
+                "Algoritma dan Pemrograman",
+                "Basis Data",
+                "Pemrograman Web",
+                "Konsep Sistem Informasi",
+                "Analisis dan Perancangan Sistem",
+                "Rekayasa Perangkat Lunak",
+                "Data Warehouse dan Data Mining",
+                "Struktur Data",
+                "Jaringan Komputer",
+                "Manajemen Jaringan",
+                "Network Administrator",
+                "Manajemen Proyek TI",
+              ];
+
+              $adaNilai = false;
+
+              echo '<ul class="list-group mb-2">';
+              foreach ($semuaMatkul as $matkul) {
+                $nilaiHuruf = $daftarNilai[$matkul] ?? null;
+                echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
+                echo htmlspecialchars($matkul);
+                if ($nilaiHuruf) {
+                  echo '<span class="badge bg-primary rounded-pill">' . htmlspecialchars($nilaiHuruf) . '</span>';
+                  $adaNilai = true;
+                } else {
+                  echo '<span class="text-muted">Belum ada data</span>';
+                }
+                echo '</li>';
+              }
+              echo '</ul>';
+              ?>
+
+              <?php if (!$adaNilai): ?>
+                <div class="alert alert-warning mt-3 mb-0">
+                  Belum ada data nilai yang diinput.
+                </div>
+              <?php endif; ?>
             </div>
-            <select class="form-select" name="ipk">
-              <option value="1">Sangat Tidak Penting</option>
-              <option value="3">Tidak Penting</option>
-              <option value="5">Netral</option>
-              <option value="7">Penting</option>
-              <option value="9">Sangat Penting</option>
-            </select>
-          </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary">Simpan</button>
-            <button class="btn btn-primary">Lanjut</button>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary" onclick="history.back()">Kembali</button>
+              <button class="btn btn-primary">Lanjut</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tab Proyek Terkait -->
-    <div class="tab-pane d-none" data-content="1">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <img src="<?=base_url("images/Projects.jpg")?>" class="img-fluid rounded" alt="Project">
-        </div>
-        <div class="col-md-8">
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Proyek Terkait</label>
-            <div class="p-3 bg-light border rounded mb-2">
-              Sejauh mana Anda merasa pengalaman dalam <strong>proyek terkait bidang pekerjaan</strong> memengaruhi kesiapan karier Anda?
-              Apakah Anda percaya bahwa portofolio proyek yang relevan lebih mencerminkan kemampuan daripada nilai akademik?
-            </div>
-            <select class="form-select" name="proyek">
-              <option value="1">Sangat Tidak Relevan</option>
-              <option value="3">Kurang Relevan</option>
-              <option value="5">Netral</option>
-              <option value="7">Relevan</option>
-              <option value="9">Sangat Relevan</option>
-            </select>
-          </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary">Simpan</button>
-            <button class="btn btn-primary">Lanjut</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Tab Pengalaman Kerja -->
-    <div class="tab-pane d-none" data-content="2">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <img src="<?=base_url("images/work.jpg")?>" class="img-fluid rounded" alt="Work Experience">
-        </div>
-        <div class="col-md-8">
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Pengalaman Kerja</label>
-            <div class="p-3 bg-light border rounded mb-2">
-              Seberapa besar pengaruh <strong>pengalaman kerja</strong> terhadap kesiapan Anda menghadapi dunia profesional?
-              Apakah Anda menilai bahwa pengalaman praktis di industri memberikan keunggulan lebih dibandingkan sekadar teori?
-            </div>
-            <select class="form-select" name="pengalaman">
-              <option value="1">Sangat Tidak Berpengaruh</option>
-              <option value="3">Kurang Berpengaruh</option>
-              <option value="5">Netral</option>
-              <option value="7">Berpengaruh</option>
-              <option value="9">Sangat Berpengaruh</option>
-            </select>
-          </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary">Simpan</button>
-            <button class="btn btn-primary">Lanjut</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Tab Sertifikasi -->
-    <div class="tab-pane d-none" data-content="3">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <img src="<?=base_url("images/Sertifikasi.jpg")?>" class="img-fluid rounded" alt="Certificate">
-        </div>
-        <div class="col-md-8">
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Sertifikasi</label>
-            <div class="p-3 bg-light border rounded mb-2">
-              Seberapa penting Anda menilai <strong>sertifikasi</strong> dalam menunjang kompetensi profesional?
-              Apakah sertifikasi menjadi salah satu pertimbangan utama Anda dalam menambah nilai jual di dunia kerja?
-            </div>
-            <select class="form-select" name="sertifikasi">
-              <option value="1">Sangat Tidak Penting</option>
-              <option value="3">Tidak Penting</option>
-              <option value="5">Netral</option>
-              <option value="7">Penting</option>
-              <option value="9">Sangat Penting</option>
-            </select>
-          </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary">Simpan</button>
-            <button class="btn btn-primary">Lanjut</button>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
 
@@ -186,14 +243,14 @@
   }
 
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', function (e) {
+    tab.addEventListener('click', function(e) {
       e.preventDefault();
       activateTab(index);
     });
   });
 
   nextButtons.forEach(btn => {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function() {
       const activeIndex = Array.from(tabs).findIndex(tab => tab.classList.contains('active'));
       if (activeIndex < tabs.length - 1) {
         activateTab(activeIndex + 1);
