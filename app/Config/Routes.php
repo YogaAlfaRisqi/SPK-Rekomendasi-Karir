@@ -25,14 +25,35 @@ $routes->group('pembobotan', ['namespace' => 'App\Controllers\Admin'], function 
     $routes->get('/', 'PembobotanKriteria::view');
 
     // Web Developer
-    $routes->post('addWebdeveloper', 'PembobotanKriteria::addWebdeveloper');
-    $routes->post('updateWebdeveloper/(:num)', 'PembobotanKriteria::updateWebdeveloper/$1');
-    $routes->get('deleteWebdeveloper/(:num)', 'PembobotanKriteria::deleteWebdeveloper/$1');
+    $routes->post('addwebdeveloper', 'PembobotanKriteria::addWebdeveloper');
+    $routes->post('updatewebdeveloper/(:num)', 'PembobotanKriteria::updateWebdeveloper/$1');
+    $routes->get('deletewebdeveloper/(:num)', 'PembobotanKriteria::deleteWebdeveloper/$1');
 
     // Mobile Engineer
-    $routes->post('addMobileengineer', 'PembobotanKriteria::addMobileengineer');
-    $routes->post('updateMobileengineer/(:num)', 'PembobotanKriteria::updateMobileengineer/$1');
-    $routes->get('deleteMobileengineer/(:num)', 'PembobotanKriteria::deleteMobileengineer/$1');
+    $routes->post('addmobileengineer', 'PembobotanKriteria::addMobileengineer');
+    $routes->post('updatemobileengineer/(:num)', 'PembobotanKriteria::updateMobileengineer/$1');
+    $routes->get('deletemobileengineer/(:num)', 'PembobotanKriteria::deleteMobileengineer/$1');
+
+    // Network Engineer
+    $routes->post('addnetworkengineer', 'PembobotanKriteria::addNetworkengineer');
+    $routes->post('updatenetworkengineer/(:num)', 'PembobotanKriteria::updateNetworkengineer/$1');
+    $routes->get('deletenetworkengineer/(:num)', 'PembobotanKriteria::deleteNetworkengineer/$1');
+
+    // QA Engineer
+    $routes->post('addqaengineer', 'PembobotanKriteria::addQAengineer');
+    $routes->post('updateqaengineer/(:num)', 'PembobotanKriteria::updateQAengineer/$1');
+    $routes->get('deleteqaengineer/(:num)', 'PembobotanKriteria::deleteQAengineer/$1');
+
+    // System Analyst
+    $routes->post('addsystemanalyst', 'PembobotanKriteria::addSystemAnalyst');
+    $routes->post('updatesystemanalyst/(:num)', 'PembobotanKriteria::updateSystemAnalyst/$1');
+    $routes->get('deletesystemanalyst/(:num)', 'PembobotanKriteria::deleteSystemAnalyst/$1');
+    
+    // Data Engineer
+    $routes->post('adddataengineer', 'PembobotanKriteria::adddataengineer');
+    $routes->post('updatedataengineer/(:num)', 'PembobotanKriteria::updatedataengineer/$1');
+    $routes->get('deletedataengineer/(:num)', 'PembobotanKriteria::deletedataengineer/$1');
+
 });
 
 

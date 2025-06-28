@@ -1,172 +1,151 @@
 <?php echo $this->extend('Dashboard/layout/dashboard') ?>
 
 <?php echo $this->section('content') ?>
-
-<!-- Pembobotan Web Developer -->
-<div class="container-fluid px-4">
-    <h3 class="mt-4 text-primary fw-bold"><?= esc($title1) ?></h3>
-    <button class="btn btn-outline-primary shadow-sm mb-2" onclick="openAddModal('web')">
-        <i class="bi bi-plus-circle me-1"></i> Tambah Bobot
-    </button>
-
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-striped table-hover table-bordered align-middle mb-0">
-            <thead class="table-primary text-center text-uppercase">
-                <tr>
-                    <th style="width: 50px;">No</th>
-                    <th>ID</th>
-                    <th>Nama Kriteria</th>
-                    <th>Bobot</th>
-                    <th style="width: 160px;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no = 1;
-                foreach ($webdeveloper as $item): ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= esc($item['id']) ?></td>
-                        <td><?= esc($item['kriteria']) ?></td>
-                        <td><?= esc($item['bobot']) ?></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-primary me-1" onclick="openEditModal('web', this)"
-                                data-id="<?= $item['id'] ?>" data-kriteria="<?= esc($item['kriteria']) ?>" data-bobot="<?= esc($item['bobot']) ?>">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('web', <?= $item['id'] ?>)">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+<div class="overflow-auto">
+    <ul class="nav nav-tabs flex-nowrap mb-4" id="roleTab" role="tablist" style="white-space: nowrap;">
+        <?php $index = 0;
+        foreach ($roles as $key => $role): ?>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link <?= $index === 0 ? 'active' : '' ?> text-truncate"
+                    id="<?= $key ?>-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tab-<?= $key ?>"
+                    type="button"
+                    role="tab"
+                    aria-controls="tab-<?= $key ?>"
+                    aria-selected="<?= $index === 0 ? 'true' : 'false' ?>"
+                    style="max-width: 140px;">
+                    <?= esc(implode(' ', array_slice(explode(' ', $role['title']), -2))) ?>
+                </button>
+            </li>
+        <?php $index++;
+        endforeach; ?>
+    </ul>
 </div>
 
-<!-- Modal Web Developer -->
-<div class="modal fade" id="modalWeb" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <form method="POST" id="formWeb" class="modal-content rounded-4 border-0 shadow overflow-hidden"
-            action="<?= base_url('pembobotan/addWebdeveloper') ?>">
-            <?= csrf_field() ?>
-            <input type="hidden" name="id" id="id_web">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="modalLabelWeb"></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Kriteria</label>
-                    <input type="text" name="kriteria" class="form-control" id="kriteria_web" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Bobot</label>
-                    <input type="number" name="bobot" class="form-control" id="bobot_web" required min="1">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="submitBtnWeb">Add</button>
-            </div>
-        </form>
-    </div>
-</div>
 
-<!-- Pembobotan Mobile Engineer -->
-<div class="container-fluid px-4 mt-5">
-    <h3 class="mt-4 text-success fw-bold"><?= esc($title2) ?></h3>
-    <button class="btn btn-outline-success shadow-sm mb-2" onclick="openAddModal('mobile')">
-        <i class="bi bi-plus-circle me-1"></i> Tambah Bobot
-    </button>
 
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-striped table-hover table-bordered align-middle mb-0">
-            <thead class="table-success text-center text-uppercase">
-                <tr>
-                    <th style="width: 50px;">No</th>
-                    <th>ID</th>
-                    <th>Nama Kriteria</th>
-                    <th>Bobot</th>
-                    <th style="width: 160px;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no = 1;
-                foreach ($mobileengineer as $item): ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= esc($item['id']) ?></td>
-                        <td><?= esc($item['kriteria']) ?></td>
-                        <td><?= esc($item['bobot']) ?></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-success me-1" onclick="openEditModal('mobile', this)"
-                                data-id="<?= $item['id'] ?>" data-kriteria="<?= esc($item['kriteria']) ?>" data-bobot="<?= esc($item['bobot']) ?>">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteItem('mobile', <?= $item['id'] ?>)">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-</div>
+<div class="tab-content" id="roleTabContent">
+    <?php $index = 0;
+    foreach ($roles as $key => $role): ?>
+        <div class="tab-pane fade <?= $index === 0 ? 'show active' : '' ?>" id="tab-<?= $key ?>" role="tabpanel" aria-labelledby="<?= $key ?>-tab">
 
-<!-- Modal Mobile Engineer -->
-<div class="modal fade" id="modalMobile" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <form method="POST" id="formMobile" class="modal-content rounded-4 border-0 shadow overflow-hidden"
-            action="<?= base_url('pembobotan/addMobileengineer') ?>">
-            <?= csrf_field() ?>
-            <input type="hidden" name="id" id="id_mobile">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="modalLabelMobile"></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Kriteria</label>
-                    <input type="text" name="kriteria" class="form-control" id="kriteria_mobile" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Bobot</label>
-                    <input type="number" name="bobot" class="form-control" id="bobot_mobile" required min="1">
+
+            <div class="container-fluid px-4 mt-0 shadow-sm rounded bg-white">
+                <h3 class="mt-4 text-<?= $role['color'] ?> fw-bold"><?= esc($role['title']) ?></h3>
+                <button class="btn btn-outline-<?= $role['color'] ?> shadow-sm mb-2" onclick="openAddModal('<?= $key ?>')">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Bobot
+                </button>
+
+                <div class="table-responsive shadow-sm rounded ">
+                    <table class="table table-striped table-hover table-bordered align-middle mb-0">
+                        <thead class="table-<?= $role['color'] ?> text-center text-uppercase">
+                            <tr>
+                                <th style="width: 50px;">No</th>
+                                <th>ID</th>
+                                <th>Nama Kriteria</th>
+                                <th>Bobot</th>
+                                <th style="width: 160px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1;
+                            foreach ($$key as $item): ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= esc($item['id']) ?></td>
+                                    <td><?= esc($item['kriteria']) ?></td>
+                                    <td><?= esc($item['bobot']) ?></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-<?= $role['color'] ?> me-1"
+                                            onclick="openEditModal('<?= $key ?>', this)"
+                                            data-id="<?= $item['id'] ?>"
+                                            data-kriteria="<?= esc($item['kriteria']) ?>"
+                                            data-bobot="<?= esc($item['bobot']) ?>">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger"
+                                            onclick="deleteItem('<?= $key ?>', <?= $item['id'] ?>)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success" id="submitBtnMobile">Add</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal<?= ucfirst($key) ?>" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <form method="POST" id="form<?= ucfirst($key) ?>" class="modal-content rounded-4 border-0 shadow overflow-hidden"
+                        action="<?= base_url("pembobotan/add{$key}") ?>">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="id" id="id_<?= $key ?>">
+                        <div class="modal-header bg-<?= $role['color'] ?> text-white">
+                            <h5 class="modal-title" id="modalLabel<?= ucfirst($key) ?>"></h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Kriteria</label>
+                                <input type="text" name="kriteria" class="form-control" id="kriteria_<?= $key ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Bobot</label>
+                                <input type="number" name="bobot" class="form-control" id="bobot_<?= $key ?>" required min="1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-<?= $role['color'] ?>" id="submitBtn<?= ucfirst($key) ?>">Add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
-    </div>
+
+
+        </div>
+    <?php $index++;
+    endforeach; ?>
 </div>
 
 <!-- Script Modal Logic -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const modalWeb = new bootstrap.Modal(document.getElementById('modalWeb'));
-    const modalMobile = new bootstrap.Modal(document.getElementById('modalMobile'));
+    // Inisialisasi semua modal dari server-side roles
+    const modalInstances = {};
+    const baseUrls = {};
+
+    <?php foreach ($roles as $key => $role): ?>
+        modalInstances['<?= $key ?>'] = new bootstrap.Modal(document.getElementById('modal<?= ucfirst($key) ?>'));
+        baseUrls['<?= $key ?>'] = {
+            add: "<?= base_url("pembobotan/add{$key}") ?>",
+            update: "<?= base_url("pembobotan/update{$key}") ?>",
+            delete: "<?= base_url("pembobotan/delete{$key}") ?>"
+        };
+    <?php endforeach; ?>
 
     function openAddModal(type) {
-        if (type === 'web') {
-            document.getElementById('formWeb').reset();
-            document.getElementById('formWeb').action = "<?= base_url('pembobotan/addWebdeveloper') ?>";
-            document.getElementById('modalLabelWeb').innerText = 'Tambah Bobot';
-            document.getElementById('submitBtnWeb').innerText = 'Add';
-            document.getElementById('id_web').value = '';
-            modalWeb.show();
-        } else if (type === 'mobile') {
-            document.getElementById('formMobile').reset();
-            document.getElementById('formMobile').action = "<?= base_url('pembobotan/addMobileengineer') ?>";
-            document.getElementById('modalLabelMobile').innerText = 'Tambah Bobot';
-            document.getElementById('submitBtnMobile').innerText = 'Add';
-            document.getElementById('id_mobile').value = '';
-            modalMobile.show();
+        const form = document.getElementById(`form${capitalize(type)}`);
+        const modalLabel = document.getElementById(`modalLabel${capitalize(type)}`);
+        const submitBtn = document.getElementById(`submitBtn${capitalize(type)}`);
+        const idField = document.getElementById(`id_${type}`);
+
+        if (!form || !modalLabel || !submitBtn || !modalInstances[type] || !baseUrls[type]) {
+            console.error(`openAddModal: Invalid type or missing elements for '${type}'`);
+            return;
         }
+
+        form.reset();
+        form.action = baseUrls[type].add;
+        modalLabel.innerText = 'Tambah Bobot';
+        submitBtn.innerText = 'Add';
+        idField.value = '';
+
+        modalInstances[type].show();
     }
 
     function openEditModal(type, button) {
@@ -174,29 +153,34 @@
         const kriteria = button.getAttribute('data-kriteria');
         const bobot = button.getAttribute('data-bobot');
 
-        if (type === 'web') {
-            document.getElementById('formWeb').action = "<?= base_url('pembobotan/updateWebdeveloper') ?>/" + id;
-            document.getElementById('id_web').value = id;
-            document.getElementById('kriteria_web').value = kriteria;
-            document.getElementById('bobot_web').value = bobot;
-            document.getElementById('modalLabelWeb').innerText = 'Edit Bobot';
-            document.getElementById('submitBtnWeb').innerText = 'Update';
-            modalWeb.show();
-        } else if (type === 'mobile') {
-            document.getElementById('formMobile').action = "<?= base_url('pembobotan/updateMobileengineer') ?>/" + id;
-            document.getElementById('id_mobile').value = id;
-            document.getElementById('kriteria_mobile').value = kriteria;
-            document.getElementById('bobot_mobile').value = bobot;
-            document.getElementById('modalLabelMobile').innerText = 'Edit Bobot';
-            document.getElementById('submitBtnMobile').innerText = 'Update';
-            modalMobile.show();
+        const form = document.getElementById(`form${capitalize(type)}`);
+        const modalLabel = document.getElementById(`modalLabel${capitalize(type)}`);
+        const submitBtn = document.getElementById(`submitBtn${capitalize(type)}`);
+        const idField = document.getElementById(`id_${type}`);
+        const kriteriaField = document.getElementById(`kriteria_${type}`);
+        const bobotField = document.getElementById(`bobot_${type}`);
+
+        if (!form || !modalLabel || !submitBtn || !modalInstances[type] || !baseUrls[type]) {
+            console.error(`openEditModal: Invalid type or missing elements for '${type}'`);
+            return;
         }
+
+        form.action = baseUrls[type].update + '/' + id;
+        modalLabel.innerText = 'Edit Bobot';
+        submitBtn.innerText = 'Update';
+
+        idField.value = id;
+        kriteriaField.value = kriteria;
+        bobotField.value = bobot;
+
+        modalInstances[type].show();
     }
 
     function deleteItem(type, id) {
-        let url = '';
-        if (type === 'web') url = "<?= base_url('pembobotan/deleteWebdeveloper') ?>";
-        if (type === 'mobile') url = "<?= base_url('pembobotan/deleteMobileengineer') ?>";
+        if (!baseUrls[type]) {
+            console.error(`deleteItem: No delete URL for type '${type}'`);
+            return;
+        }
 
         Swal.fire({
             title: 'Yakin ingin menghapus?',
@@ -208,11 +192,16 @@
             confirmButtonText: 'Ya, hapus!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = url + '/' + id;
+                window.location.href = baseUrls[type].delete + '/' + id;
             }
         });
     }
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 </script>
+
 
 <?php if (session()->getFlashdata('success')): ?>
     <script>
