@@ -8,6 +8,12 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'Admin\Dashboard::index');
 
+$routes->get('register', 'AuthController::register');
+$routes->post('register/process', 'AuthController::registerProcess');
+$routes->get('login', 'AuthController::login');
+$routes->post('login/process', 'AuthController::loginProcess');
+$routes->get('logout', 'AuthController::logout');
+
 //Kriteria
 $routes->get('/criteria', 'Admin\Criteria::view');
 $routes->post('/criteria/add', 'Admin\Criteria::add');
@@ -48,12 +54,11 @@ $routes->group('pembobotan', ['namespace' => 'App\Controllers\Admin'], function 
     $routes->post('addsystemanalyst', 'PembobotanKriteria::addSystemAnalyst');
     $routes->post('updatesystemanalyst/(:num)', 'PembobotanKriteria::updateSystemAnalyst/$1');
     $routes->get('deletesystemanalyst/(:num)', 'PembobotanKriteria::deleteSystemAnalyst/$1');
-    
+
     // Data Engineer
     $routes->post('adddataengineer', 'PembobotanKriteria::adddataengineer');
     $routes->post('updatedataengineer/(:num)', 'PembobotanKriteria::updatedataengineer/$1');
     $routes->get('deletedataengineer/(:num)', 'PembobotanKriteria::deletedataengineer/$1');
-
 });
 
 
@@ -61,7 +66,12 @@ $routes->group('pembobotan', ['namespace' => 'App\Controllers\Admin'], function 
 
 
 $routes->get('/preferensi', 'Preferences::view');
+$routes->post('preferensi/simpan', 'Preferences::simpan');
+$routes->post('preferensi/proses', 'Preferences::proses');
 $routes->get('/rekomendasi', 'Rekomendasi::view');
+$routes->post('riwayat/simpan', 'Riwayat::simpan');
+$routes->post('riwayat/hapus/(:num)', 'Riwayat::hapus/$1');
+
 $routes->get('/riwayat', 'Riwayat::view');
 $routes->get('/alternative', 'Admin\Alternative::view');
 $routes->get('/perhitungan', 'Admin\Perhitungan::view');

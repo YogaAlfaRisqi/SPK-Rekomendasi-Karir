@@ -9,6 +9,8 @@ class Dashboard extends BaseController
     public function index()
 
     {
+         // Ambil data user dari session
+        $user = session()->get('user');
         
         $features = [
             [
@@ -35,6 +37,7 @@ class Dashboard extends BaseController
             'title' => "Dashboard",
             'activePage' => 'dashboard', // tambahkan ini
             'features'=> $features,
+            'user'=> $user,
         ];
         return view('Dashboard/pages/home', $data);
     }

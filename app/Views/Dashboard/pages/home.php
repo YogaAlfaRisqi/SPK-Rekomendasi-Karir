@@ -4,7 +4,11 @@
 
 <div class="container-fluid px-4">
   <!-- Header -->
-  <h4 class="fw-semibold">Welcome back, <span class="fw-bold text-primary">Arya<?= session()->get('username') ?></span></h4>
+  <h4 class="fw-semibold">
+    Welcome back,
+    <span class="fw-bold text-primary"><?= session()->get('name') ?></span>
+  </h4>
+
   <p class="text-muted mb-4">Raih karir terbaikmu sesuai potensi dan minat kamu 🚀</p>
 
   <!-- Hero Section -->
@@ -16,7 +20,7 @@
             <h1 class="h5 fw-bold mb-2">Nggak Perlu Bingung, Yuk Temukan Jalan Karirmu!</h1>
             <p class="small text-muted mb-3">Dari minat kamu, kita bantu rekomendasikan skill dan profesi yang pas ✨</p>
 
-            <a href="<?= base_url('/admin/criteria') ?>" class="btn btn-primary btn-sm">Lihat Rekomendasi</a>
+            <a href="<?= base_url('/riwayat') ?>" class="btn btn-primary btn-sm">Lihat Rekomendasi</a>
           </div>
           <img src="<?= base_url("images/career.png") ?>" alt="Hero Illustration" class="img-fluid" style="max-height: 150px;">
         </div>
@@ -24,22 +28,22 @@
     </div>
   </div>
 
-    <div class="row-lg-4 pt-4">
-      <h5 class="fw-semibold mb-3">Fitur Unggulan</h5>
-      <div class="row g-4 align-items-stretch">
-        <?php foreach ($features as $feature): ?>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 border-1 shadow-sm hover-scale">
-              <div class="card-body">
-                <i class="<?= $feature['icon'] ?> fa-2x <?= $feature['color'] ?> mb-3"></i>
-                <h6 class="card-title fw-bold"><?= esc($feature['title']) ?></h6>
-                <p class="card-text small text-muted"><?= esc($feature['text']) ?></p>
-              </div>
+  <div class="row-lg-4 pt-4">
+    <h5 class="fw-semibold mb-3">Fitur Unggulan</h5>
+    <div class="row g-4 align-items-stretch">
+      <?php foreach ($features as $feature): ?>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-1 shadow-sm hover-scale">
+            <div class="card-body">
+              <i class="<?= $feature['icon'] ?> fa-2x <?= $feature['color'] ?> mb-3"></i>
+              <h6 class="card-title fw-bold"><?= esc($feature['title']) ?></h6>
+              <p class="card-text small text-muted"><?= esc($feature['text']) ?></p>
             </div>
           </div>
-        <?php endforeach; ?>
-      </div>
+        </div>
+      <?php endforeach; ?>
     </div>
+  </div>
 </div>
 
 <style>

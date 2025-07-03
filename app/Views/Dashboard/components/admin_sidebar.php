@@ -24,10 +24,8 @@
             Riwayat
           </a>
 
-
           <!-- Menu Untuk Admin -->
           <div class="sb-sidenav-menu-heading">Admin Menu</div>
-
 
           <a class="nav-link <?= ($activePage == 'criteria' ? 'active' : '') ?>" href="<?= base_url('criteria') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
@@ -36,17 +34,12 @@
 
           <a class="nav-link <?= ($activePage == 'karir' ? 'active' : '') ?>" href="<?= base_url('karir') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
-            Manage Karir
+            Manage Alternatif
           </a>
 
           <a class="nav-link <?= ($activePage == 'pembobotan' ? 'active' : '') ?>" href="<?= base_url('pembobotan') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
             Manage Pembobotan Kriteria
-          </a>
-
-          <a class="nav-link <?= ($activePage == 'alternative' ? 'active' : '') ?>" href="<?= base_url('alternative') ?>">
-            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
-            Manage Alternatif
           </a>
 
           <a class="nav-link <?= ($activePage == 'perhitungan' ? 'active' : '') ?>" href="<?= base_url('perhitungan') ?>">
@@ -58,7 +51,6 @@
             <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
             User Management
           </a>
-
 
         </div>
       </div>

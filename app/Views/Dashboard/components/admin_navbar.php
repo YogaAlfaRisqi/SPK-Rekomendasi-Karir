@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container-fluid px-4">
     <!-- Brand -->
@@ -65,6 +63,10 @@
             <span class="text-dark fw-medium">Akun</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3" aria-labelledby="navbarDropdown">
+            <!-- Nama Pengguna -->
+            <li class="dropdown-header fw-semibold text-primary">
+              <?= esc(session()->get('name')) ?>
+            </li>
             <li><a class="dropdown-item" href="<?= base_url('akun/pengaturan') ?>">Pengaturan</a></li>
             <li><a class="dropdown-item" href="<?= base_url('akun/riwayat') ?>">Riwayat Aktivitas</a></li>
             <li>
@@ -72,6 +74,7 @@
             </li>
             <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Keluar</a></li>
           </ul>
+
         </li>
       </ul>
 

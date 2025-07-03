@@ -42,7 +42,6 @@
                         <thead class="table-<?= $role['color'] ?> text-center text-uppercase">
                             <tr>
                                 <th style="width: 50px;">No</th>
-                                <th>ID</th>
                                 <th>Nama Kriteria</th>
                                 <th>Bobot</th>
                                 <th style="width: 160px;">Aksi</th>
@@ -53,7 +52,6 @@
                             foreach ($$key as $item): ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= esc($item['id']) ?></td>
                                     <td><?= esc($item['kriteria']) ?></td>
                                     <td><?= esc($item['bobot']) ?></td>
                                     <td class="text-center">

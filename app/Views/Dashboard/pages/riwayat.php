@@ -2,54 +2,50 @@
 <?= $this->section('content') ?>
 
 <div class="container py-4">
-    <h3 class="mb-4 fw-bold">📁 Career Recommendation History</h3>
+    <h4 class="fw-semibold mb-4">Riwayat Rekomendasi Anda</h4>
 
-    <!-- Jika tidak ada riwayat -->
-    <!-- <div class="alert alert-info">You don’t have any saved recommendations yet.</div> -->
-
-    <div class="table-responsive">
-        <table class="table table-hover align-middle">
+    <?php if (!empty($riwayat)): ?>
+        <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
                     <th>#</th>
-                    <th>Career</th>
-                    <th>Match Score</th>
-                    <th>Date Saved</th>
-                    <th>Actions</th>
+                    <th>Karir</th>
+                    <th>Skor SAW</th>
+                    <th>Persentase</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+
                 </tr>
             </thead>
             <tbody>
-                <!-- Contoh data dummy -->
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <strong>UI/UX Designer</strong><br>
-                        <small class="text-muted">Creative digital interface work</small>
-                    </td>
-                    <td><span class="badge bg-success">85%</span></td>
-                    <td>May 21, 2025</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-outline-primary">View</a>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <strong>Data Analyst</strong><br>
-                        <small class="text-muted">Analytical role with data insights</small>
-                    </td>
-                    <td><span class="badge bg-secondary">78%</span></td>
-                    <td>May 19, 2025</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-outline-primary">View</a>
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </td>
-                </tr>
-                <!-- Tambahkan baris lainnya sesuai data dari backend -->
+                <?php foreach ($riwayat as $i => $item): ?>
+                    <?php
+                    $skor    = number_format((float) $item['skor'], 4);       // SAW mentah: 4 digit
+                    $persen  = number_format((float) $item['persentase'], 2); // %: 2 digit
+                    $tanggal = date('d-m-Y', strtotime($item['created_at']));
+                    ?>
+                    <tr>
+                        <td><?= $i + 1 ?></td>
+                        <td><?= esc($item['karir']) ?></td>
+                        <td><span class="badge bg-primary"><?= $skor ?></span></td>
+                        <td><span class="badge bg-success"><?= $persen ?>%</span></td>
+                        <td><?= $tanggal ?></td>
+                        <td>
+                            <form action="<?= base_url('riwayat/hapus/' . $item['id']) ?>" method="post" onsubmit="return confirm('Yakin ingin menghapus riwayat ini?')">
+                                <?= csrf_field() ?>
+                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
+
         </table>
-    </div>
+    <?php else: ?>
+        <div class="alert alert-info text-center">
+            Belum ada data riwayat.
+        </div>
+    <?php endif; ?>
 </div>
 
 <?= $this->endSection() ?>
