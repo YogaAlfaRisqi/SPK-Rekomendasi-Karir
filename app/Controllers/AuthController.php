@@ -18,6 +18,7 @@ class AuthController extends BaseController
 
         $data = $this->request->getPost();
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['role'] = 'user'; // Default role saat register
 
         $userModel->save($data);
 
@@ -42,6 +43,7 @@ class AuthController extends BaseController
                 'user_id'   => $user['id'],
                 'name'      => $user['name'],
                 'email'     => $user['email'],
+                'role'      => $user['role'], // simpan role ke session
                 'logged_in' => true
             ]);
 

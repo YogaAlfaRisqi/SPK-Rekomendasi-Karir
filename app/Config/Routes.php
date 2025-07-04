@@ -26,6 +26,16 @@ $routes->post('/karir/add', 'Admin\Karir::add');
 $routes->post('/karir/update/(:any)', 'Admin\Karir::update/$1');
 $routes->get('/karir/delete/(:any)', 'Admin\Karir::delete/$1');
 
+// === ADMIN - USER MANAGEMENT ===
+$routes->group('admin/user', ['filter' => 'auth'], function($routes) {
+    $routes->get('/', 'Admin\User::view');                  // Tampilkan daftar user
+    $routes->post('create', 'Admin\User::create');          // Proses tambah user
+    $routes->get('edit/(:num)', 'Admin\User::edit/$1');     // Form edit user
+    $routes->post('update/(:num)', 'Admin\User::update/$1');// Proses update user
+    $routes->post('delete/(:num)', 'Admin\User::delete/$1');// Proses hapus user
+});
+
+
 //Pembobotan Kriteria
 $routes->group('pembobotan', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'PembobotanKriteria::view');

@@ -44,9 +44,14 @@ $segment1 = $uri->getSegment(1);
         <div>Akun</div>
       </a>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+        <li class="dropdown-header fw-semibold text-primary">
+          <?= esc(session()->get('name')) ?>
+        </li>
         <li><a class="dropdown-item" href="<?= base_url('akun/pengaturan') ?>">Pengaturan</a></li>
         <li><a class="dropdown-item" href="<?= base_url('akun/riwayat') ?>">Riwayat</a></li>
-        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
         <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Keluar</a></li>
       </ul>
     </div>

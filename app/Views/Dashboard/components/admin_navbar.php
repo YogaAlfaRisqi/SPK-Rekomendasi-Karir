@@ -46,38 +46,43 @@
 
       <!-- User Account Menu (Layar Besar) -->
       <ul class="navbar-nav ms-auto d-none d-lg-flex align-items-center">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle d-flex align-items-center"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img
-              src="<?= base_url('images/userAvatar.jpg') ?>"
-              alt="User Avatar"
-              class="rounded-circle me-2"
-              width="36"
-              height="36" />
-            <span class="text-dark fw-medium">Akun</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3" aria-labelledby="navbarDropdown">
-            <!-- Nama Pengguna -->
-            <li class="dropdown-header fw-semibold text-primary">
-              <?= esc(session()->get('name')) ?>
-            </li>
-            <li><a class="dropdown-item" href="<?= base_url('akun/pengaturan') ?>">Pengaturan</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('akun/riwayat') ?>">Riwayat Aktivitas</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Keluar</a></li>
-          </ul>
-
-        </li>
+        <?php if (session()->get('logged_in')): ?>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img
+                src="<?= base_url('images/userAvatar.jpg') ?>"
+                alt="User Avatar"
+                class="rounded-circle me-2"
+                width="36"
+                height="36" />
+              <span class="text-dark fw-medium"><?= esc(session()->get('name')) ?></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3" aria-labelledby="navbarDropdown">
+              <li class="dropdown-header fw-semibold text-primary">
+                <?= esc(session()->get('name')) ?>
+              </li>
+              <li><a class="dropdown-item" href="<?= base_url('akun/pengaturan') ?>">Pengaturan</a></li>
+              <li><a class="dropdown-item" href="<?= base_url('akun/riwayat') ?>">Riwayat Aktivitas</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Keluar</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          <li class="nav-item">
+            <a href="<?= base_url('login') ?>" class="btn btn-outline-primary fw-semibold px-4">
+              🔐 Login
+            </a>
+          </li>
+        <?php endif; ?>
       </ul>
-
     </div>
   </div>
 </nav>

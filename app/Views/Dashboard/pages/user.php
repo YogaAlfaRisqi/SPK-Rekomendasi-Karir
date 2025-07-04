@@ -1,5 +1,4 @@
 <?= $this->extend('Dashboard/layout/dashboard') ?>
-
 <?= $this->section('content') ?>
 
 <div class="container-fluid px-4">
@@ -8,106 +7,122 @@
     <li class="breadcrumb-item active"><?= esc($subtitle) ?></li>
   </ol>
 
-  <!-- Trigger Modal for Create -->
-  <button type="button" class="btn btn-outline-primary shadow-sm mb-2" data-bs-toggle="modal" data-bs-target="#criteriaModal">
-    <i class="bi bi-plus-circle me-1"></i> Add New
+  <!-- Button Trigger Modal -->
+  <button type="button" class="btn btn-outline-primary shadow-sm mb-2" data-bs-toggle="modal" data-bs-target="#userModal" onclick="openCreateModal()">
+    <i class="bi bi-plus-circle me-1"></i> Tambah User
   </button>
 
+  <!-- Flashdata -->
+  <?php if (session()->getFlashdata('success')): ?>
+    <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+  <?php endif ?>
 
+  <!-- Table -->
   <div class="table-responsive shadow-sm rounded">
     <table class="table table-striped table-hover table-bordered align-middle mb-0">
       <thead class="table-primary text-center text-uppercase">
         <tr>
-          <th scope="col" style="width: 50px;">#</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Password</th>
-          <th scope="col" style="width: 160px;">Actions</th>
+          <th>#</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="text-center">1</th>
-          <td>Arya</td>
-          <td>arya@gmail.com</td>
-          <td>arya12345</td>
-          <td class="text-center">
-            <a href="?edit=1" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-              <i class="bi bi-pencil"></i>
-            </a>
-            <a href="<?= base_url('your-controller/delete/1') ?>" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure want to delete this item?');">
-              <i class="bi bi-trash"></i>
-            </a>
-
-          </td>
-        </tr>
-
+        <?php foreach ($users as $i => $user): ?>
+          <tr>
+            <td class="text-center"><?= $i + 1 ?></td>
+            <td><?= esc($user['name']) ?></td>
+            <td><?= esc($user['email']) ?></td>
+            <td class="text-center"><?= esc($user['role']) ?></td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-primary me-1"
+                onclick='openEditModal(<?= json_encode($user) ?>)'>
+                <i class="bi bi-pencil"></i>
+              </button>
+              <form action="<?= base_url('admin/user/delete/' . $user['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus user ini?')">
+                <?= csrf_field() ?>
+                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+        <?php endforeach ?>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- Modal Form -->
-<?php
-// Simulasi data edit manual via URL
-$isEdit = isset($_GET['edit']) && $_GET['edit'] == '1';
-$edit = $isEdit ? [
-  'id' => 1,
-  'username' => 'Arya',
-  'email' => "arya@gmail.com",
-  'password' => "arya12345"
-] : null;
-
-$formAction = $isEdit ? base_url('update') : base_url('create');
-$modalTitle = $isEdit ? 'Edit User' : 'Add New User';
-$submitLabel = $isEdit ? 'Update' : 'Save';
-?>
-
-<!-- Modal shown only if editing -->
-<?php if ($isEdit): ?>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var modal = new bootstrap.Modal(document.getElementById('criteriaModal'));
-      modal.show();
-    });
-  </script>
-<?php endif; ?>
-
-
-<!-- Modal -->
-<div class="modal fade <?= $isEdit ? 'show d-block' : '' ?>" id="criteriaModal" tabindex="-1" aria-labelledby="criteriaModalLabel" aria-hidden="<?= $isEdit ? 'false' : 'true' ?>" style="<?= $isEdit ? 'background-color: rgba(0,0,0,0.5);' : '' ?>">
+<!-- Modal Tambah/Edit User -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="<?= $formAction ?>" method="post">
+    <form id="userForm" method="post">
       <?= csrf_field() ?>
       <div class="modal-content rounded-4 shadow">
         <div class="modal-header">
-          <h5 class="modal-title"><?= $modalTitle ?></h5>
-          <a href="<?= current_url() ?>" class="btn-close" aria-label="Close"></a>
+          <h5 class="modal-title" id="modalTitle">Tambah User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" id="username" required value="<?= $isEdit ? esc($edit['username']) : '' ?>">
-          </div>
+          <input type="hidden" name="id" id="userId">
 
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" step="any" class="form-control" name="email" id="email" required value="<?= $isEdit ? esc($edit['email']) : '' ?>">
+            <label for="name" class="form-label">Nama</label>
+            <input type="text" name="name" id="name" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" step="any" class="form-control" name="password" id="password" required value="<?= $isEdit ? esc($edit['password']) : '' ?>">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password <small id="passwordNote" class="text-muted">(biarkan kosong jika tidak ingin mengganti)</small></label>
+            <input type="password" name="password" id="password" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select name="role" id="role" class="form-select" required>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
         </div>
         <div class="modal-footer">
-          <a href="<?= current_url() ?>" class="btn btn-light">Cancel</a>
-
-          <button type="submit" class="btn btn-primary"><?= $submitLabel ?></button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary" id="submitButton">Simpan</button>
         </div>
       </div>
     </form>
   </div>
 </div>
 
+<!-- Script -->
+<script>
+  function openCreateModal() {
+    document.getElementById("modalTitle").innerText = "Tambah User";
+    document.getElementById("userForm").action = "<?= base_url('admin/user/create') ?>";
+    document.getElementById("userId").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("role").value = "user";
+    document.getElementById("passwordNote").style.display = "none";
+    document.getElementById("password").required = true;
+  }
+
+  function openEditModal(user) {
+    const modal = new bootstrap.Modal(document.getElementById('userModal'));
+    modal.show();
+
+    document.getElementById("modalTitle").innerText = "Edit User";
+    document.getElementById("userForm").action = "<?= base_url('admin/user/update') ?>/" + user.id;
+    document.getElementById("userId").value = user.id;
+    document.getElementById("name").value = user.name;
+    document.getElementById("email").value = user.email;
+    document.getElementById("password").value = "";
+    document.getElementById("role").value = user.role;
+    document.getElementById("passwordNote").style.display = "inline";
+    document.getElementById("password").required = false;
+  }
+</script>
 
 <?= $this->endSection() ?>
