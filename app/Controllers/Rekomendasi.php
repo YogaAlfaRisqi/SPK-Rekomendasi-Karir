@@ -20,5 +20,4 @@ class Rekomendasi extends BaseController
         return view('Dashboard/pages/rekomendasi', $data);
     }
 
-    
 }

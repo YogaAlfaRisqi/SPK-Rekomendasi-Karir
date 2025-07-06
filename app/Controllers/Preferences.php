@@ -8,7 +8,8 @@ use App\Models\CriteriaModel;
 use Config\Database;
 
 class Preferences extends BaseController
-{
+{   
+    // Tabel Pembobotan Tiap Karir
     protected $bobotTableMap = [
         'Web Developer'    => 'pemb_webdeveloper',
         'Mobile Engineer'  => 'pemb_mobileengineer',
@@ -18,7 +19,7 @@ class Preferences extends BaseController
         'Data Engineer'    => 'pemb_dataengineer',
     ];
 
-    // Pertanyaan disimpan di properti controller
+    // Pertanyaan List
     protected $pertanyaan = [
         [
             "Algoritma.jpg",
@@ -83,7 +84,7 @@ class Preferences extends BaseController
     ];
 
 
-
+    // Menampilkan Halaman Preferensi Nilai
     public function view()
     {
         $karirModel = new KarirModel();
@@ -119,6 +120,7 @@ class Preferences extends BaseController
     }
 
 
+    // Fungsi untuk menyimpan nilai
     public function simpan()
     {
         $post = $this->request->getPost('nilai');
@@ -150,6 +152,7 @@ class Preferences extends BaseController
         return redirect()->back()->with('success', 'Nilai berhasil disimpan.');
     }
 
+    // Fungsi memproses perhitungan dengan SAW Method
     public function proses()
     {
         $db = Database::connect();
@@ -194,62 +197,44 @@ class Preferences extends BaseController
         }
         // dd($bobotKarir);
 
-        $skorSAW = [];
-        $totalSkor = 0;
+        $skorKarir = []; 
+        $totalSkorSAW = 0;
 
-        // Hitung skor SAW
+        // 2. Hitung skor SAW untuk tiap karir
         foreach ($karirList as $karir) {
             $karirNama = $karir['karir'];
             $skor = 0;
 
-            foreach ($normalisasi as $kriteriaNama => $nilaiNorm) {
-                $bobot = $bobotKarir[$karirNama][$kriteriaNama] ?? 0;
-                $skor += $nilaiNorm * $bobot;
+            foreach ($normalisasi as $kriteria => $nilaiNormalisasi) {
+                $bobot = $bobotKarir[$karirNama][$kriteria] ?? 0;
+                $skor += $nilaiNormalisasi * $bobot;
             }
 
-            $skorSAW[] = [
-                'karir' => $karirNama,
-                'skor'  => $skor
-            ];
+            $skorKarir[$karirNama] = $skor;
+            $totalSkorSAW = array_sum($skorKarir); // lebih akurat dan clean
 
-            $totalSkor += $skor; // akumulasi total semua skor
         }
 
-        // dd($totalSkor);
-
-        // Normalisasi skor SAW ke bentuk persentase
-        $prosentase = [];
-        foreach ($skorSAW as $item) {
-            $persen = $totalSkor > 0 ? ($item['skor'] / $totalSkor) : 0;
-
-            $prosentase[] = [
-                'karir' => $item['karir'],
-                'skor'  => $persen // nilai float 0.00 - 1.00
-            ];
-        }
-        // dd($skorSAW);
-
-        // Gabungkan skorSaw dan prosentase
+        // 3. Hitung persen kontribusi tiap karir terhadap total skor
         $hasilGabungan = [];
-        foreach ($prosentase as $i => $item) {
+        foreach ($skorKarir as $karirNama => $skorSAW) {
+            $persen = $totalSkorSAW > 0 ? ($skorSAW / $totalSkorSAW) : 0;
+
             $hasilGabungan[] = [
-                'karir' => $item['karir'],
-                'skor' => $item['skor'], // nilai 0.xx (prosentase)
-                'saw'  => $skorSAW[$i]['skor'], // nilai skor SAW mentah
+                'karir' => $karirNama,
+                'saw'   => $skorSAW,  // Nilai skor mentah
+                'skor'  => $persen    // Nilai skor dalam bentuk persentase (0.xx)
             ];
         }
-        
 
-        // Urutkan berdasarkan skor tertinggi
+        // 4. Urutkan hasil dari persentase tertinggi ke terendah
         usort($hasilGabungan, fn($a, $b) => $b['skor'] <=> $a['skor']);
 
-        // dd($prosentase);
-        // dd($skorSAW);
         return view('Dashboard/pages/rekomendasi', [
             'title'      => 'Hasil Rekomendasi Karir',
             'activePage' => 'rekomendasi',
-            'hasil'      => $hasilGabungan, // ← ini penting
-            'skorSaw'    => $skorSAW,
+            'hasil'      => $hasilGabungan,
+            'skorSaw'    => $skorKarir,
             'proses'     => [
                 'nilai_mahasiswa' => $nilaiMahasiswa,
                 'normalisasi'     => $normalisasi,
