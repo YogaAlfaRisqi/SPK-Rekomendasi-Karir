@@ -55,10 +55,12 @@ class Criteria extends BaseController
         $criteria = $criteriaModel->find($id);
 
         // Ambil data dari form
+        $kode       = $this->request->getPost('kode');
         $kriteria       = $this->request->getPost('kriteria');
         $jenis         = $this->request->getPost('jenis');
 
         $data = [
+            'kode'      => $kode,
             'kriteria'      => $kriteria,
             'jenis'         => $jenis,
         ];

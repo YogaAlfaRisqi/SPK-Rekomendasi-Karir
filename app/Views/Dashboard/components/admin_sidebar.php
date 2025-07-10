@@ -46,8 +46,12 @@
               <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
               Manage Pembobotan
             </a>
+            <a class="nav-link <?= ($activePage == 'nilaimahasiswa' ? 'active' : '') ?>" href="<?= base_url('nilaimahasiswa') ?>">
+              <div class="sb-nav-link-icon"><i class="fas fa-sliders-h"></i></div>
+              Manage Mahasiswa
+            </a>
 
-            <a class="nav-link <?= ($activePage == 'perhitungan' ? 'active' : '') ?>" href="<?= base_url('perhitungan') ?>">
+            <a class="nav-link <?= ($activePage == 'perhitunganSAW' ? 'active' : '') ?>" href="<?= base_url('perhitunganSAW') ?>">
               <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
               Perhitungan
             </a>

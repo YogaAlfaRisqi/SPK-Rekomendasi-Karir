@@ -13,13 +13,15 @@
     <i class="bi bi-plus-circle me-1"></i> Add New
   </button>
 
+
   <div class="table-responsive shadow-sm rounded">
     <table class="table table-striped table-hover table-bordered align-middle mb-0">
       <thead class="table-primary text-center text-uppercase">
         <tr>
           <th scope="col" style="width: 50px;">No</th>
           <th scope="col">ID</th>
-          <th scope="col">Nama Mahasiswa</th>
+          <th scope="col">Nama Kriteria</th>
+          <th scope="col">Jenis</th>
 
           <th scope="col" style="width: 160px;">Actions</th>
         </tr>
@@ -30,7 +32,8 @@
           <tr>
             <td><?= $no++ ?></td>
             <td><?= ($crt['id']) ?></td>
-            <td><?= ($crt['nama']) ?></td>
+            <td><?= ($crt['kriteria']) ?></td>
+            <td><?= ($crt['jenis']) ?></td>
 
             <td class="text-center">
               <button

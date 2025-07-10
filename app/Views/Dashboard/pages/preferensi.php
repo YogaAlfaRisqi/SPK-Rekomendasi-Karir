@@ -15,14 +15,8 @@
       <form action="<?= base_url('preferensi/simpan') ?>" method="post">
         <div class="row g-4 flex-column">
           <?php foreach ($pertanyaan as $index => $item): ?>
-            <div class="row g-4 mb-4">
-              <div class="col-md-4" style="height: 200px; overflow: hidden;">
-                <img
-                  src="<?= base_url("images/" . $item[0]) ?>"
-                  class="img-fluid rounded"
-                  style="width: 100%; height: 100%; object-fit: cover;"
-                  alt="<?= htmlspecialchars($item[1]) ?>">
-              </div>
+            <div class="row g-2 mb-0">
+              
 
               <div class="col-md-8">
                 <div class="mb-3">

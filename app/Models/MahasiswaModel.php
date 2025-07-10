@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class MahasiswaModel extends Model
 {
-    protected $table            = 'mahasiswas';
+    protected $table            = 'mahasiswa';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'user_id'];
+    protected $allowedFields    = ['nama', 'user_id', 'kriteria_id','nilai'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

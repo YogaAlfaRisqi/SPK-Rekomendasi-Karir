@@ -13,7 +13,7 @@ class CriteriaModel extends Model
     protected $returnType       = 'array';      // Bisa juga 'object' jika kamu mau
     protected $useSoftDeletes   = false;
 
-    protected $allowedFields = ['kriteria', 'jenis'];
+    protected $allowedFields = ['kode','kriteria','jenis'];
 
     protected $useTimestamps = true; // Aktifkan created_at & updated_at otomatis
     protected $dateFormat    = 'datetime';

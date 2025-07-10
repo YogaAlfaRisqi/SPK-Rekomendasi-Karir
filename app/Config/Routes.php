@@ -71,9 +71,14 @@ $routes->group('pembobotan', ['namespace' => 'App\Controllers\Admin'], function 
     $routes->get('deletedataengineer/(:num)', 'PembobotanKriteria::deletedataengineer/$1');
 });
 
+ $routes->get('/nilaimahasiswa', 'Admin\NilaiMahasiswa::view');
+ $routes->post('/createnilaimahasiswa', 'Admin\NilaiMahasiswa::create');
+ $routes->post('/updatenilaimahasiswa/(:num)', 'Admin\NilaiMahasiswa::update/$1');
+ $routes->post('/deletenilaimahasiswa/(:num)', 'Admin\NilaiMahasiswa::delete/$1');
 
+//  $routes->get('/mahasiswa', 'Admin\MahasiswaController::view');
 
-
+ $routes->get('/perhitunganSAW', 'Admin\PerhitunganSAW::view');
 
 $routes->get('/preferensi', 'Preferences::view');
 $routes->post('preferensi/simpan', 'Preferences::simpan');

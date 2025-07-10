@@ -18,7 +18,7 @@ class AuthController extends BaseController
 
         $data = $this->request->getPost();
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $data['role'] = 'user'; // Default role saat register
+        $data['role'] = 'user';
 
         $userModel->save($data);
 

@@ -19,7 +19,7 @@
       <thead class="table-primary text-center text-uppercase">
         <tr>
           <th scope="col" style="width: 50px;">No</th>
-          <th scope="col">ID</th>
+          <th scope="col">Kode</th>
           <th scope="col">Nama Kriteria</th>
           <th scope="col">Jenis</th>
 
@@ -31,7 +31,7 @@
         foreach ($criteria as $crt): ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= ($crt['id']) ?></td>
+            <td><?= ($crt['kode']) ?></td>
             <td><?= ($crt['kriteria']) ?></td>
             <td><?= ($crt['jenis']) ?></td>
 
@@ -39,6 +39,7 @@
               <button
                 class="btn btn-sm btn-outline-primary me-1 btn-edit"
                 data-id="<?= $crt['id'] ?>"
+                data-kode="<?= $crt['kode'] ?>"
                 data-kriteria="<?= $crt['kriteria'] ?>"
                 data-jenis="<?= $crt['jenis'] ?>"
                 title="Edit">
@@ -70,6 +71,11 @@
         </div>
         <div class="modal-body">
           <div class="mb-3">
+            <label for="kode" class="form-label">Kode</label>
+            <input type="text" class="form-control" name="kode" id="kode" required
+              value="<?= $isEdit ? esc($edit['kode']) : '' ?>">
+          </div>
+          <div class="mb-3">
             <label for="kriteria" class="form-label">Nama Kriteria</label>
             <input type="text" class="form-control" name="kriteria" id="kriteria" required
               value="<?= $isEdit ? esc($edit['kriteria']) : '' ?>">
@@ -100,10 +106,12 @@
   document.querySelectorAll('.btn-edit').forEach(button => {
     button.addEventListener('click', function() {
       const id = this.dataset.id;
+      const kode = this.dataset.kode;
       const kriteria = this.dataset.kriteria;
       const jenis = this.dataset.jenis;
 
       // Isi form modal
+      document.getElementById('kode').value = kode;
       document.getElementById('kriteria').value = kriteria;
       document.getElementById('jenis').value = jenis;
 
